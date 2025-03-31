@@ -22,5 +22,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Clean Gradle Cache
+        run: |
+          ./gradlew --stop
+          ./gradlew clean
+          rm -rf ~/.gradle/caches
+          rm -rf ~/.gradle/wrapper
+
       - name: Build Release APK
-        run: ./gradlew :app:buildRelease
+        run: ./gradlew :app:assembleRelease
